@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
 import niffler.db.dao.NifflerUsersDAO;
 import niffler.db.dao.NifflerUsersDAOHibernate;
+import niffler.db.dao.NifflerUsersDAOJdbc;
 import niffler.db.entity.Authority;
 import niffler.db.entity.AuthorityEntity;
 import niffler.db.entity.UserEntity;
@@ -20,11 +21,11 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-@Disabled
+//@Disabled
 public class LoginNewUserTest extends BaseWebTest {
 
   private static Faker faker = new Faker();
-  private NifflerUsersDAO usersDAO = new NifflerUsersDAOHibernate();
+  private NifflerUsersDAO usersDAO = new NifflerUsersDAOJdbc();
   private UserEntity ue;
 
   private static final String TEST_PWD = "12345";
@@ -32,7 +33,7 @@ public class LoginNewUserTest extends BaseWebTest {
   @BeforeEach
   void createUserForTest() {
     ue = new UserEntity();
-    ue.setUsername("valentin3");
+    ue.setUsername("Florida22");
     ue.setPassword(TEST_PWD);
     ue.setEnabled(true);
     ue.setAccountNonExpired(true);
@@ -49,10 +50,10 @@ public class LoginNewUserTest extends BaseWebTest {
     usersDAO.createUser(ue);
   }
 
-  @AfterEach
-  void cleanUp() {
-    usersDAO.removeUser(ue);
-  }
+//  @AfterEach
+//  void cleanUp() {
+//    usersDAO.removeUser(ue);
+//  }
 
   @Test
   void loginTest() throws IOException {
